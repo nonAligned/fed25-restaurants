@@ -1,0 +1,6 @@
+<div *ngIf="type == 'rating'">
+    <p>Rating: <img *ngFor="let item of fullArray" src="{{starFullPath}}"><img *ngFor="let item of emptyArray" src="{{starEmptyPath}}"></p>
+</div>
+<div *ngIf="type == 'price'">
+    <p>Price: <img *ngFor="let item of fullArray" src="{{coinFullPath}}"><img *ngFor="let item of emptyArray" src="{{coinEmptyPath}}"></p>
+</div>

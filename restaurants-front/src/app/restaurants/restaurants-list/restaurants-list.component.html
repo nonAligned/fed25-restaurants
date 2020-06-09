@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-12">
+        <br>
+        <div class="float-left">
+            <dr-pagination (pageChanged)="updatePage($event)" [size]="restaurantsList?.count" [pageSize]="parameters.pageSize"></dr-pagination>
+        </div>
+        <div class="float-right">
+            <dr-search (priceRangeChange)="updatePriceRange($event)"></dr-search>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4" *ngFor="let restaurant of restaurantsList?.results; let odd = odd" [ngClass]="{odd: odd}">
+        <dr-restaurant (click)="openModal(content)" [restaurant]="restaurant"></dr-restaurant>
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">{{restaurant.name}}</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="text-center"><u>Working hours</u></p>
+                    <ul>
+                        <li *ngIf="restaurant.days[1]">Monday: {{restaurant.days[1].opens}} - {{restaurant.days[1].closes}}</li>
+                        <li *ngIf="restaurant.days[2]">Tuesday: {{restaurant.days[2].opens}} - {{restaurant.days[2].closes}}</li>
+                        <li *ngIf="restaurant.days[3]">Wednesday: {{restaurant.days[3].opens}} - {{restaurant.days[3].closes}}</li>
+                        <li *ngIf="restaurant.days[4]">Thursday: {{restaurant.days[4].opens}} - {{restaurant.days[4].closes}}</li>
+                        <li *ngIf="restaurant.days[5]">Friday: {{restaurant.days[5].opens}} - {{restaurant.days[5].closes}}</li>
+                        <li *ngIf="restaurant.days[6]">Satudray: {{restaurant.days[6].opens}} - {{restaurant.days[6].closes}}</li>
+                        <li *ngIf="restaurant.days[7]">Sunday: {{restaurant.days[7].opens}} - {{restaurant.days[7].closes}}</li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <p class="text-center"><u>Address</u></p>
+                    <div class="float-right">
+                        <ul class="pr-3">
+                            <li>{{restaurant.location}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <dr-menu-table [id]="restaurant._id"></dr-menu-table>
+            </div>
+          </ng-template>
+    </div>
+</div>

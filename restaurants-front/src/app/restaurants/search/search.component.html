@@ -1,0 +1,7 @@
+<form class="form-inline" novalidate>
+    <div class="form-group">
+        <label><strong>Price range</strong></label>
+        <input class="form-control mx-2" type="number" name="priceFrom" min="1" [(ngModel)]="priceFrom" (change)="changePrice()">
+        <input class="form-control" type="number" name="priceTo" min="1" [(ngModel)]="priceTo" (change)="changePrice()">
+    </div>
+</form>
